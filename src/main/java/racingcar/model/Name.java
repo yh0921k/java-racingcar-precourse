@@ -13,7 +13,7 @@ public class Name {
     private void verifySize(String value) {
         int length = value.length();
 
-        if(length < 1 || length > 5) {
+        if (length < 1 || length > 5) {
             throw new InvalidCarNameSizeException();
         }
     }
