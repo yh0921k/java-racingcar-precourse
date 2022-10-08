@@ -38,16 +38,30 @@ public class CarTest {
     }
 
     @Test
-    @DisplayName("Car의 move() 메서드 호출시 한 칸 이동 검증")
+    @DisplayName("Car의 move() 메서드 호출시 MovementAction이 MOVE라면 한 칸 이동 검증")
     void move() {
 
         // given
         Car car = new Car(new Name("kyh"));
 
         // when
-        car.move();
+        car.move(MovementAction.MOVE);
 
         // then
         assertThat(car.getPosition()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("Car의 move() 메서드 호출시 MovementAction이 STOP이라면 정지 검증")
+    void stop() {
+
+        // given
+        Car car = new Car(new Name("kyh"));
+
+        // when
+        car.move(MovementAction.STOP);
+
+        // then
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 }

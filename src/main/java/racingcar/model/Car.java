@@ -17,7 +17,9 @@ public class Car {
         return this.position.getValue();
     }
 
-    public void move() {
-        this.position.increment();
+    public void move(MovementAction movementAction) {
+        if (movementAction.isMoving()) {
+            this.position.increment();
+        }
     }
 }
