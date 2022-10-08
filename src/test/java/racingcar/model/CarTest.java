@@ -36,4 +36,18 @@ public class CarTest {
                 .isInstanceOf(InvalidCarNameSizeException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_CAR_NAME);
     }
+
+    @Test
+    @DisplayName("Car의 move() 메서드 호출시 한 칸 이동 검증")
+    void move() {
+
+        // given
+        Car car = new Car(new Name("kyh"));
+
+        // when
+        car.move();
+
+        // then
+        assertThat(car.getPosition()).isEqualTo(1);
+    }
 }
