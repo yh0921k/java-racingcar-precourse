@@ -1,5 +1,6 @@
 package racingcar.model;
 
+import racingcar.constant.GameEnvironment;
 import racingcar.exception.InvalidCarNameSizeException;
 
 public class Name {
@@ -13,7 +14,7 @@ public class Name {
     private void verifySize(String value) {
         int length = value.length();
 
-        if (length < 1 || length > 5) {
+        if (length < GameEnvironment.MIN_NAME_SIZE || length > GameEnvironment.MAX_NAME_SIZE) {
             throw new InvalidCarNameSizeException();
         }
     }
