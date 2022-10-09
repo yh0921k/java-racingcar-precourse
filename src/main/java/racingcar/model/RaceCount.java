@@ -30,7 +30,7 @@ public class RaceCount {
     }
 
     private void verifyNumber(String source) {
-        String pattern = "^[0-9]+$";
+        String pattern = "^[+|-]?[0-9]+$";
         if (!source.matches(pattern)) {
             throw new InvalidRaceCountFormatException();
         }
