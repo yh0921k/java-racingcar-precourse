@@ -1,5 +1,6 @@
 package racingcar.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -33,5 +34,18 @@ public class RaceCountTest {
         assertThatThrownBy(() -> new RaceCount(userInput))
                 .isInstanceOf(InvalidRaceCountRangeException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_RACE_COUNT_RANGE);
+    }
+
+    @Test
+    @DisplayName("입력받은 레이스 횟수가 '0'으로 시작할 경우 변환 검증")
+    void trimZeroStart() {
+        // given
+        UserInput userInput = new UserInput("0099");
+
+        // when
+        RaceCount raceCount = new RaceCount(userInput);
+
+        // then
+        assertThat(raceCount.getValue()).isEqualTo(99);
     }
 }
