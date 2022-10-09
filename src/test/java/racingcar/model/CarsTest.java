@@ -27,7 +27,7 @@ public class CarsTest {
 
     @Test
     @DisplayName("올바른 사용자 입력(자동차 이름)에 대해 정상적인 크기의 자동차 리스트 생성")
-    void validUserInputCars() {
+    void validUserInputCarsSize() {
 
         // given
         String value = "pobi,crong,honux";
@@ -41,6 +41,23 @@ public class CarsTest {
 
         // then
         assertThat(cars.size()).isEqualTo(size);
+    }
+
+    @Test
+    @DisplayName("올바른 사용자 입력(자동차 이름)에 대해 정상적인 이름의 자동차 리스트 생성")
+    void validUserInputCarsName() {
+
+        // given
+        Cars cars = new Cars(new Names(new UserInput("pobi,crong,honux")));
+
+        // when
+        List<Car> carList = cars.getValue();
+
+        // then
+        assertThat(carList.get(0).getName()).isEqualTo("pobi");
+        assertThat(carList.get(1).getName()).isEqualTo("crong");
+        assertThat(carList.get(2).getName()).isEqualTo("honux");
+
     }
 
     @Test
