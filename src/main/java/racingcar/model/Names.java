@@ -17,6 +17,10 @@ public class Names {
         verifyDuplicatedCarName();
     }
 
+    public Names(List<Name> value) {
+        this.value = value;
+    }
+
     private void verifyDuplicatedCarName() {
         Set<Name> names = new LinkedHashSet<>(value);
         if (names.size() != value.size()) {

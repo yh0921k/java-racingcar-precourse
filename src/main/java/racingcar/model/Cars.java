@@ -31,4 +31,31 @@ public class Cars {
             car.move(MovementPolicy.action());
         }
     }
+
+    public Names getMostMovedNames() {
+        Position maximumPosition = getPositions().getMaximumPosition();
+        return getNamesBy(maximumPosition);
+    }
+
+    private Positions getPositions() {
+        List<Position> positionValues = new LinkedList<>();
+        for (Car car : value) {
+            positionValues.add(car.getPosition());
+        }
+        return new Positions(positionValues);
+    }
+
+    private Names getNamesBy(Position maximumPosition) {
+        List<Name> nameList = new LinkedList<>();
+        for (Car car : value) {
+            setNameByPosition(nameList, car, maximumPosition);
+        }
+        return new Names(nameList);
+    }
+
+    private void setNameByPosition(List<Name> nameList, Car car, Position maximumPosition) {
+        if (car.getPosition().equals(maximumPosition)) {
+            nameList.add(new Name(car.getName()));
+        }
+    }
 }

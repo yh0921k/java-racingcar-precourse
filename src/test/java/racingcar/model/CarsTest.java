@@ -75,9 +75,52 @@ public class CarsTest {
         cars.moveAll();
 
         // then
-        assertThat(carList.get(0).getPosition()).isEqualTo(1);
-        assertThat(carList.get(1).getPosition()).isEqualTo(0);
-        assertThat(carList.get(2).getPosition()).isEqualTo(1);
+        assertThat(carList.get(0).getPosition().getValue()).isEqualTo(1);
+        assertThat(carList.get(1).getPosition().getValue()).isEqualTo(0);
+        assertThat(carList.get(2).getPosition().getValue()).isEqualTo(1);
+
+        movementPolicy.close();
+    }
+
+    @Test
+    @DisplayName("가장 많이 움직인 차량 조회 - 단독 우승")
+    void mostMovedNamesSingle() {
+        MockedStatic<MovementPolicy> movementPolicy = Mockito.mockStatic(MovementPolicy.class);
+        movementPolicy.when(MovementPolicy::action)
+                .thenReturn(MovementAction.MOVE, MovementAction.STOP, MovementAction.STOP);
+
+        // given
+        Cars cars = new Cars(new Names(new UserInput("pobi,crong,honux")));
+
+        // when
+        cars.moveAll();
+        cars.moveAll();
+
+        // then
+        assertThat(cars.getMostMovedNames().size()).isEqualTo(1);
+        assertThat(cars.getMostMovedNames().getValue().contains(new Name("pobi"))).isTrue();
+
+        movementPolicy.close();
+    }
+
+    @Test
+    @DisplayName("가장 많이 움직인 차량 조회 - 공동 우승")
+    void mostMovedNamesMultiple() {
+        MockedStatic<MovementPolicy> movementPolicy = Mockito.mockStatic(MovementPolicy.class);
+        movementPolicy.when(MovementPolicy::action)
+                .thenReturn(MovementAction.MOVE, MovementAction.STOP, MovementAction.MOVE);
+
+        // given
+        Cars cars = new Cars(new Names(new UserInput("pobi,crong,honux")));
+
+        // when
+        cars.moveAll();
+        cars.moveAll();
+
+        // then
+        assertThat(cars.getMostMovedNames().size()).isEqualTo(2);
+        assertThat(cars.getMostMovedNames().getValue().contains(new Name("pobi"))).isTrue();
+        assertThat(cars.getMostMovedNames().getValue().contains(new Name("honux"))).isTrue();
 
         movementPolicy.close();
     }
