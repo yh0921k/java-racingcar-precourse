@@ -9,6 +9,7 @@ import racingcar.model.Game;
 import racingcar.model.Names;
 import racingcar.model.RaceCount;
 import racingcar.view.InputConsole;
+import racingcar.view.OutputConsole;
 
 public class GameController {
     public static void run() {
@@ -23,6 +24,7 @@ public class GameController {
         try {
             return InputConsole.readCarNames();
         } catch (InvalidCarNameSizeException | DuplicatedCarNameException exception) {
+            OutputConsole.printErrorView(exception.getMessage());
             return readNames();
         }
     }
@@ -31,6 +33,7 @@ public class GameController {
         try {
             return InputConsole.readRaceCount();
         } catch (InvalidRaceCountFormatException | InvalidRaceCountRangeException exception) {
+            OutputConsole.printErrorView(exception.getMessage());
             return readCount();
         }
     }

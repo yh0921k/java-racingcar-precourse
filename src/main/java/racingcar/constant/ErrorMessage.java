@@ -5,7 +5,7 @@ import static racingcar.constant.GameEnvironment.MIN_NAME_SIZE;
 import static racingcar.constant.GameEnvironment.MIN_RACE_COUNT;
 
 public class ErrorMessage {
-    public static final String ERROR_PREFIX = "[ERROR]";
+    private static final String ERROR_PREFIX = "[ERROR]";
 
     public static final String INVALID_CAR_NAME =
             String.format("%s 자동차 이름은 %d ~ %d자로 입력해야 합니다.", ERROR_PREFIX, MIN_NAME_SIZE, MAX_NAME_SIZE);
