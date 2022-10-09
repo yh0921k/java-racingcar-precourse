@@ -10,6 +10,10 @@ public class Game {
         this.raceCount = raceCount;
     }
 
+    public int getRaceCount() {
+        return this.raceCount.getValue();
+    }
+
     public Cars race() {
         cars.moveAll();
 
