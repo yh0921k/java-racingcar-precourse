@@ -18,6 +18,7 @@ public class GameController {
         for (int currentCount = 0; currentCount < game.getRaceCount(); currentCount++) {
             OutputConsole.printRaceResult(game.race());
         }
+        OutputConsole.printWinner(game.getWinners());
     }
 
     private static Names readNames() {

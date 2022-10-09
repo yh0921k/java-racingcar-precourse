@@ -16,7 +16,10 @@ public class Game {
 
     public Cars race() {
         cars.moveAll();
-
         return cars;
+    }
+
+    public Names getWinners() {
+        return cars.getMostMovedNames();
     }
 }

@@ -1,8 +1,10 @@
 package racingcar.view;
 
+import racingcar.constant.GameEnvironment;
 import racingcar.constant.GameMessage;
 import racingcar.model.Car;
 import racingcar.model.Cars;
+import racingcar.model.Names;
 
 public class OutputConsole {
 
@@ -35,5 +37,28 @@ public class OutputConsole {
             builder.append("-");
         }
         return builder.toString();
+    }
+
+    public static void printWinner(Names winners) {
+        printWinnerPrefix();
+        printEachWinner(winners);
+    }
+
+    private static void printWinnerPrefix() {
+        System.out.print(GameMessage.RACE_WINNER_OUTPUT);
+    }
+
+    private static void printEachWinner(Names winners) {
+        StringBuilder builder = new StringBuilder();
+        int numberOfWinner = winners.size();
+
+        for (int i = 0; i < numberOfWinner; i++) {
+            builder.append(winners.get(i).getValue());
+            if(i < numberOfWinner - 1) {
+                builder.append(String.format("%s%s", GameEnvironment.CAR_NAME_DELIMITER, " "));
+            }
+        }
+
+        System.out.println(builder);
     }
 }
