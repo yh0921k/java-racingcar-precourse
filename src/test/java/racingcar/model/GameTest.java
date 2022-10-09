@@ -43,8 +43,8 @@ public class GameTest {
         Cars cars = game.race();
 
         // then
-        assertThat(cars.getValue().get(0).getPosition()).isEqualTo(0);
-        assertThat(cars.getValue().get(1).getPosition()).isEqualTo(1);
-        assertThat(cars.getValue().get(2).getPosition()).isEqualTo(1);
+        assertThat(cars.getValue().get(0).getPosition().getValue()).isEqualTo(0);
+        assertThat(cars.getValue().get(1).getPosition().getValue()).isEqualTo(1);
+        assertThat(cars.getValue().get(2).getPosition().getValue()).isEqualTo(1);
     }
 }
