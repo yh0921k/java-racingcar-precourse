@@ -3,8 +3,11 @@ package racingcar.model;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 import racingcar.constant.GameEnvironment;
 import racingcar.view.UserInput;
 
@@ -38,5 +41,27 @@ public class CarsTest {
 
         // then
         assertThat(cars.size()).isEqualTo(size);
+    }
+
+    @Test
+    @DisplayName("자동차 일괄 이동 검증")
+    void moveAll() {
+        MockedStatic<MovementPolicy> movementPolicy = Mockito.mockStatic(MovementPolicy.class);
+        movementPolicy.when(MovementPolicy::action)
+                .thenReturn(MovementAction.MOVE, MovementAction.STOP, MovementAction.MOVE);
+
+        // given
+        Cars cars = new Cars(new Names(new UserInput("pobi,crong,honux")));
+        List<Car> carList = cars.getValue();
+
+        // when
+        cars.moveAll();
+
+        // then
+        assertThat(carList.get(0).getPosition()).isEqualTo(1);
+        assertThat(carList.get(1).getPosition()).isEqualTo(0);
+        assertThat(carList.get(2).getPosition()).isEqualTo(1);
+
+        movementPolicy.close();
     }
 }
