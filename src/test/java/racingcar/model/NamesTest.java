@@ -66,4 +66,15 @@ public class NamesTest {
                 .isInstanceOf(DuplicatedCarNameException.class)
                 .hasMessageContaining(ErrorMessage.DUPLICATED_CAR_NAME);
     }
+
+    @Test
+    @DisplayName("index로 Name 인스턴스 조회 및 객체 동등성 검증")
+    void findByIndex() {
+        // given
+        Names names = new Names(new UserInput("0,1,2,3"));
+
+        // then
+        assertThat(names.get(1)).isEqualTo(new Name("1"));
+        assertThat(names.get(0)).isNotEqualTo(new Name("1"));
+    }
 }

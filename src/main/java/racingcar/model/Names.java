@@ -32,6 +32,10 @@ public class Names {
         return value.size();
     }
 
+    public Name get(int index) {
+        return this.value.get(index);
+    }
+
     public List<Name> getValue() {
         return Collections.unmodifiableList(value);
     }
