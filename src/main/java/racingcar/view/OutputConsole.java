@@ -21,7 +21,10 @@ public class OutputConsole {
 
     private static void printEachRaceResult(Cars cars) {
         for (Car car : cars.getValue()) {
-            System.out.println(String.format(GameMessage.EACH_RESULT_OUTPUT, car.getName(), bar(car.getPosition())));
+            String carName = car.getName();
+            String bar = bar(car.getPosition().getValue());
+
+            System.out.println(String.format(GameMessage.EACH_RESULT_OUTPUT, carName, bar));
         }
         System.out.println();
     }

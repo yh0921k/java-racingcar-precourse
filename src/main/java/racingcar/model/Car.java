@@ -13,8 +13,8 @@ public class Car {
         return this.name.getValue();
     }
 
-    public int getPosition() {
-        return this.position.getValue();
+    public Position getPosition() {
+        return this.position;
     }
 
     public void move(MovementAction movementAction) {
