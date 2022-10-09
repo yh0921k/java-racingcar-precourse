@@ -54,7 +54,7 @@ public class OutputConsole {
 
         for (int i = 0; i < numberOfWinner; i++) {
             builder.append(winners.get(i).getValue());
-            if(i < numberOfWinner - 1) {
+            if (i < numberOfWinner - 1) {
                 builder.append(String.format("%s%s", GameEnvironment.CAR_NAME_DELIMITER, " "));
             }
         }

@@ -36,7 +36,7 @@ public class Position implements Comparable<Position> {
 
     @Override
     public int compareTo(Position position) {
-        if(this.value >= position.value) {
+        if (this.value >= position.value) {
             return 1;
         }
         return -1;
