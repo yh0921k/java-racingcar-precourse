@@ -2,18 +2,20 @@ package racingcar.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import racingcar.constant.GameMessage;
+import racingcar.model.Names;
+import racingcar.model.RaceCount;
 
 public class InputConsole {
-    public static UserInput readCarNames() {
-        return new UserInput(carNamesInputView());
+    public static Names readCarNames() {
+        return new Names(new UserInput(carNamesInputView()));
     }
 
-    public static UserInput readRaceCount() {
-        return new UserInput(raceCountInputView());
+    public static RaceCount readRaceCount() {
+        return new RaceCount(new UserInput(raceCountInputView()));
     }
 
     private static String carNamesInputView() {
-        System.out.print(GameMessage.CAR_NAME_INPUT);
+        System.out.println(GameMessage.CAR_NAME_INPUT);
         return Console.readLine();
     }
 
