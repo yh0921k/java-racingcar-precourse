@@ -16,7 +16,7 @@ public class GameController {
         Game game = new Game(readNames(), readCount());
 
         for (int currentCount = 0; currentCount < game.getRaceCount(); currentCount++) {
-            game.race();
+            OutputConsole.printRaceResult(game.race());
         }
     }
 
