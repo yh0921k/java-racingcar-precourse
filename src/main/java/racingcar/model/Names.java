@@ -1,17 +1,27 @@
 package racingcar.model;
 
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import racingcar.constant.GameEnvironment;
+import racingcar.exception.DuplicatedCarNameException;
 import racingcar.view.UserInput;
 
 public class Names {
     private final List<Name> value;
 
     public Names(UserInput userInput) {
-        String[] names = splitByDelimiter(userInput);
-        this.value = generate(names);
+        this.value = generate(splitByDelimiter(userInput));
+        verifyDuplicatedCarName();
+    }
+
+    private void verifyDuplicatedCarName() {
+        Set<Name> names = new LinkedHashSet<>(value);
+        if (names.size() != value.size()) {
+            throw new DuplicatedCarNameException();
+        }
     }
 
     public int size() {

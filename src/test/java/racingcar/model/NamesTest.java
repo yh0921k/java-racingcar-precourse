@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.constant.ErrorMessage;
 import racingcar.constant.GameEnvironment;
+import racingcar.exception.DuplicatedCarNameException;
 import racingcar.exception.InvalidCarNameSizeException;
 import racingcar.view.UserInput;
 
@@ -48,7 +49,21 @@ public class NamesTest {
         UserInput inValidUserInput = new UserInput("123456,1,12");
 
         // then
-        assertThatThrownBy(() -> new Names(inValidUserInput)).isInstanceOf(InvalidCarNameSizeException.class)
+        assertThatThrownBy(() -> new Names(inValidUserInput))
+                .isInstanceOf(InvalidCarNameSizeException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_CAR_NAME);
+    }
+
+    @Test
+    @DisplayName("자동차 이름에 중복이 있다면 예외 발생")
+    void isNotContainsDuplicatedName() {
+
+        // given
+        UserInput inValidUserInput = new UserInput("kyh,kyh");
+
+        // then
+        assertThatThrownBy(() -> new Names(inValidUserInput))
+                .isInstanceOf(DuplicatedCarNameException.class)
+                .hasMessageContaining(ErrorMessage.DUPLICATED_CAR_NAME);
     }
 }
